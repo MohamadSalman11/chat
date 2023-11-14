@@ -1,16 +1,10 @@
 const express = require("express");
 const app = express();
 const http = require("http").Server(app);
-const path = require("path");
 const cors = require("cors");
 const io = require("socket.io")(http);
 
 app.use(cors());
-
-// send response
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./frontend/index.html"));
-});
 
 io.on("connection", (socket) => {
   console.log("A user is connected");
