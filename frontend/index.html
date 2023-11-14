@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sending audio files</title>
+  </head>
+  <body>
+    <h1>Hello to the soket.io</h1>
+    <button class="myvalue" value="A">Client A</button>
+
+    <button value="B">Client B</button>
+
+    <button type="submit" class="send">Send</button>
+    <button class="save">Save</button>
+
+    <input type="text" placeholder="your id" />
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script>
+      const socket = io.connect("http://127.0.0.1:8000");
+
+      socket.on("connect", () => {
+        console.log("Connected to server");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from server");
+      });
+
+      socket.on("message", (data) => {
+        console.log("Received message:", data);
+      });
+
+      // const submit = document.querySelector(".send");
+      // let myId;
+      // let otherClient;
+      // socket.on("connect", () => {
+      //   console.log("Client Connected");
+      // });
+
+      // socket.on("message", (data) => {
+      //   if (data.to == myId) console.log(data.message);
+      // });
+
+      // submit.addEventListener("click", () => {
+      //   socket.emit("message", {
+      //     to: otherClient,
+      //     message: `Hello Client ${otherClient}`,
+      //   });
+      // });
+
+      // document.addEventListener("click", function (e) {
+      //   if (!e.target.value) return;
+      //   otherClient = e.target.value;
+      // });
+
+      // document.querySelector(".save").addEventListener("click", () => {
+      //   myId = document.querySelector("input").value;
+      // });
+    </script>
+  </body>
+</html>

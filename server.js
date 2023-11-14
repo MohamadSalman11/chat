@@ -3,14 +3,13 @@ const app = express();
 const http = require("http").Server(app);
 const path = require("path");
 const cors = require("cors");
-let id = 0;
 const io = require("socket.io")(http);
 
 app.use(cors());
 
 // send response
 app.get("/", (req, res) => {
-  res.send("Hello To my Chat Application");
+  res.sendFile(path.join(__dirname, "./frontend/index.html"));
 });
 
 io.on("connection", (socket) => {
