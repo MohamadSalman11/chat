@@ -1,15 +1,22 @@
 const express = require("express");
 const app = express();
-const http = require("http").Server(app); // Fix this line
+const http = require("http").Server(app);
 const cors = require("cors");
-const io = require("socket.io")(http);
 
 app.use(cors());
+
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "https://chat-dusky-rho.vercel.app",
+    methods: ["GET", "POST"],
+  },
+});
+
 io.on("connection", (socket) => {
   console.log("A user is connected");
 
   socket.on("disconnect", () => {
-    console.log("The user disconnected"); // Fix the log message as well
+    console.log("The user disconnected");
   });
 });
 
