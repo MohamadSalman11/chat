@@ -1,22 +1,21 @@
 const express = require("express");
 const app = express();
-const http = require("http").Server(app);
+const http = require("http").Server(app); // Fix this line
 const cors = require("cors");
 const io = require("socket.io")(http);
 
 app.use(cors());
-
 io.on("connection", (socket) => {
   console.log("A user is connected");
 
   socket.on("disconnect", () => {
-    console.log("The user disconnect");
+    console.log("The user disconnected"); // Fix the log message as well
   });
+});
 
-  socket.on("message", (data) => {
-    console.log("Received message:", data);
-    socket.broadcast.emit("message", { message: data.message, to: data.to });
-  });
+app.get("/", (req, res) => {
+  console.log("client");
+  res.send("Nice to meet you");
 });
 
 // start server
