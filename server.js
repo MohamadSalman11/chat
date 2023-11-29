@@ -3,13 +3,13 @@ const app = express();
 const http = require("http").Server(app);
 const cors = require("cors");
 
-// app.use(cors());
-
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",
   },
 });
+
+app.use(cors());
 
 io.on("connection", (socket) => {
   console.log("A user is connected");

@@ -1,9 +1,7 @@
 import { io } from "socket.io-client";
 
 // funktioniert
-const socket = io("http://localhost:8000", {
-  transports: ["polling"],
-});
+const socket = io("http://localhost:8000");
 
 socket.on("connect", () => {
   console.log("Client connected");
