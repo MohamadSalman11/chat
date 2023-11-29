@@ -1,8 +1,8 @@
 import { io } from "socket.io-client";
 
 // funktioniert
-const socket = io("https://chat-xi-one.vercel.app", {
-  //   transports: ["websocket"],
+const socket = io("http://localhost:8000", {
+  transports: ["polling"],
 });
 
 socket.on("connect", () => {
