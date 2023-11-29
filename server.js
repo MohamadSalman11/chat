@@ -5,12 +5,7 @@ const cors = require("cors");
 
 app.use(cors());
 
-const io = require("socket.io")(http, {
-  cors: {
-    origin: "https://chat-dusky-rho.vercel.app",
-    methods: ["GET", "POST"],
-  },
-});
+const io = require("socket.io")(http);
 
 io.on("connection", (socket) => {
   console.log("A user is connected");
@@ -21,11 +16,11 @@ io.on("connection", (socket) => {
 });
 
 app.get("/", (req, res) => {
-  console.log("client");
-  res.send("Nice to meet you");
+  res.send("Nice to meet");
 });
 
-// start server
-http.listen(8000, () => {
-  console.log("Server running on port 8000");
+// starte den Server
+const port = process.env.PORT || 8000;
+http.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
